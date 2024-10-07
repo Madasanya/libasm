@@ -1,17 +1,17 @@
-AS		= nasm
+AS			= nasm
 ASFLAGS		= -felf64
-AR		= ar
+AR			= ar
 ARFLAGS		= src
-RM		= rm -f
-SRC		= hello_world.s
-OBJ		= $(SRC:%.s=%.o)
+RM			= rm -f
+SRC			= ft_strlen.s hello_world.s
+OBJ			= $(SRC:%.s=%.o)
 NAME		= libasm.a
 
-.c.o:
-		${AS} ${ASFLAGS} $< -o ${<:.s=.o}
+.s.o:
+			${AS} ${ASFLAGS} $< -o ${<:.s=.o}
 
 $(NAME):	${OBJ}
-		${AR} ${ARFLAGS} ${NAME} ${OBJ}
+			${AR} ${ARFLAGS} ${NAME} ${OBJ}
 
 all:		${NAME}
 
@@ -21,6 +21,6 @@ clean:
 fclean:		clean
 			${RM} ${NAME}
 
-re:		fclean all
+re:			fclean all
 
 .PHONY:		all clean fclean re
