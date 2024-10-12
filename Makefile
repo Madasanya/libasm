@@ -3,7 +3,7 @@ ASFLAGS		= -felf64
 AR			= ar
 ARFLAGS		= src
 RM			= rm -f
-SRC			= ft_strlen.s hello_world.s
+SRC			= ft_strlen.s ft_strcmp.s ft_strcpy.s hello_world.s
 OBJ			= $(SRC:%.s=%.o)
 NAME		= libasm.a
 
