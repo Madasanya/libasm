@@ -3,20 +3,25 @@ ASFLAGS		= -felf64
 AR			= ar
 ARFLAGS		= src
 RM			= rm -f
-SRC			= ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s hello_world.s
-OBJ			= $(SRC:%.s=%.o)
+SRCD		= ./src/
+SRC			= ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s ft_strdup.s hello_world.s
+SRCF		= $(addprefix $(SRCD),$(SRC))
+OBJD		= ./obj/
+#OBJ			= $(SRC:%.s=%.o)
+OBJF 		= $(SRCF:$(SRCD)%.s=$(OBJD)%.o)
 NAME		= libasm.a
 
-.s.o:
-			${AS} ${ASFLAGS} $< -o ${<:.s=.o}
+$(OBJD)%.o: $(SRCD)%.s 
+			@mkdir -p $(OBJD)
+			${AS} ${ASFLAGS} $< -o $@
 
-$(NAME):	${OBJ}
-			${AR} ${ARFLAGS} ${NAME} ${OBJ}
+$(NAME):	${OBJF}
+			${AR} ${ARFLAGS} ${NAME} ${OBJF}
 
 all:		${NAME}
 
 clean:		
-			${RM} ${OBJ}
+			${RM} ${OBJD}*.o
 
 fclean:		clean
 			${RM} ${NAME}
