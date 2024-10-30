@@ -2,16 +2,20 @@
 ; ft_list_push_front
 ; ----------------------------------------------------------------------------------------
 
+          extern malloc
           global    ft_list_push_front
           section   .text
 ft_list_push_front:
-            xor rax, rax                ; initialize return value with 0 (fastest way)
             cmp rdi, 0x0                ; check if pointer to list is NULL
             je exit
-            cmp rsi, 0x0                ; check if pointer to element to be added is NULL
+            mov r12, rdi                ; copy pointer to list to callee-save regeister
+            mov r13, rsi                ; copy pointer to data to callee-saved register
+            mov rdi, 16                 ; pass element size to malloc calls 1st argument
+            call malloc wrt ..plt       ; call malloc to allocate memory for new element
+            cmp rax, 0                  ; check if malloc was successful
             je exit
-            mov rdx, [rdi]              ; copy the pointer of list head to register
-            mov [rsi+8], rdx            ; copy new elements next pointer to pointer of list (NULL for first element)
-            mov rcx, rsi                ; copy pointer of new element to register
-            mov [rdi], rcx              ; copy pointer of list head to new element
+            mov [rax+0], r13            ; copy data to element data pointer
+            mov r14, [r12]              ; copy list head pointer to register (memory to reg)
+            mov [rax+8], r14            ; copy list head pointer to elements next pointer
+            mov [r12], rax              ; copy pointer of list head to new element
 exit:       ret                         ; returns rax

@@ -18,7 +18,7 @@ int64_t ft_read(int64_t, char *, int64_t);
 char * ft_strdup(char *);
 
 int64_t ft_list_size(t_list *);
-void ft_list_push_front(t_list **, t_list *);
+void ft_list_push_front(t_list **, void *);
 //void hello_world();
 
 int main()
@@ -55,18 +55,18 @@ int main()
 	//printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
 	//printf("\nReturn of ft_write is: %d\n", read(0, s1, 5));
 	//printf("\nError is: %s with errno %d\n", strerror(errno), errno);
-	char * duplicate = ft_strdup(s2);
-	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
+	//char * duplicate = ft_strdup(s2);
+	//printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
 	//printf("src is %s and dst is %s\n", src, dest);
 	//hello_world();
 	printf("Head points to %s\n", head);
-	ft_list_push_front(&head, &elem1);
-	ft_list_push_front(&head, &elem2);
-	//ft_list_push_front(&head, &elem3);
+	ft_list_push_front(&head, (void*)s2);
+	ft_list_push_front(&head, (void*)"Me");
+	ft_list_push_front(&head, (void*)(elem3.data));
 	printf("Elem1 data %s\n", head->data);
 	printf("Elem2 data %s\n", head->next->data);
-	//printf("Elem3 data %s\n", head->next->next->data);
-	//printf("Elem3 end %s\n", head->next->next->next);
+	printf("Elem3 data %s\n", head->next->next->data);
+	printf("Elem3 end %s\n", head->next->next->next);
 	printf("List size is %d\n", ft_list_size(head));
 	//printf("Node size is\n\tdata:%d\n\tnext:%d\n\ttotal:%d\n", sizeof(elem1.data), sizeof(elem1.next), sizeof(elem1));
 	return 0;
