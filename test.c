@@ -55,9 +55,9 @@ int main()
 	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
 	//printf("src is %s and dst is %s\n", src, dest);
 	//hello_world();
-	printf("Elem1 data %s\n", head->data);
-	printf("Elem2 data %s\n", head->next->data);
-	printf("Elem3 data %s\n", head->next->next->data);
+	//printf("Elem1 data %s\n", head->data);
+	//printf("Elem2 data %s\n", head->next->data);
+	//printf("Elem3 data %s\n", head->next->next->data);
 	printf("List size is %d\n", ft_list_size(head));
 	printf("Node size is\n\tdata:%d\n\tnext:%d\n\ttotal:%d\n", sizeof(elem1.data), sizeof(elem1.next), sizeof(elem1));
 	return 0;
