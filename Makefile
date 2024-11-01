@@ -4,7 +4,7 @@ AR			= ar
 ARFLAGS		= src
 RM			= rm -f
 SRCD		= ./src/
-SRC			= ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s ft_strdup.s ft_list_size.s ft_list_push_front.s
+SRC			= ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s ft_strdup.s ft_list_size.s ft_list_push_front.s ft_list_remove_if.s
 SRCF		= $(addprefix $(SRCD),$(SRC))
 OBJD		= ./obj/
 #OBJ			= $(SRC:%.s=%.o)
