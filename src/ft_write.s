@@ -11,7 +11,7 @@ ft_write:   mov     rax, 1           ; rax is syscall input and 1 the value for 
             jge exit		     
             neg rax		     ; errno is returned as negative value from -1 to -4095 and therefore needs to be negated
             mov rbx, rax	     ; rbx getts the errnos value, as the call of the errno location will be overwritten with this one
-            call __errno_location wrt ..plt		; sets a pointer to errno location to rax
+            call __errno_location wrt ..plt		; sets a pointer to errno location to rax and "wrt ..plt" is used to make this call through procedure linkage table (plt)
             mov [rax], rbx		; sets the value (negated return value of write syscall) to where rax points to (errno location)
             mov rax, -1			; return value of our function for failed write
 exit:       ret                           ; returns rax
