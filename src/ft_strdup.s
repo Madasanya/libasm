@@ -2,6 +2,7 @@
 ; ft_strdup
 ; ----------------------------------------------------------------------------------------
 
+	  extern __errno_location
           extern malloc
           global    ft_strdup
           section   .text
@@ -14,6 +15,8 @@ src_end:    cmp byte [rdi], 0
             jmp src_end
 malloc_call:mov rdi, rbx
             call malloc wrt ..plt
+	    cmp rax, 0
+	    jl malloc_fail
             mov rsi, rax
             mov rdi, r12     
 loop:       mov dl, byte [rdi]
@@ -24,3 +27,9 @@ loop:       mov dl, byte [rdi]
             inc rdi
             jmp loop
 exit:       ret                          ; returns rax
+malloc_fail:neg rax
+	    mov rbx, rax
+	    call __errno_location wrt ..plt
+	    mov [rax], rbx
+	    mov rax, -1
+	    ret
