@@ -24,8 +24,11 @@ clean:
 			${RM} ${OBJD}*.o
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} ${NAME} test
 
 re:			fclean all
+
+test:		all
+			gcc test.c -L. ${NAME} -o test && ./test
 
 .PHONY:		all clean fclean re

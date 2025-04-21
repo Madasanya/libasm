@@ -19,7 +19,7 @@ int64_t ft_read(int64_t, char *, int64_t);
 char * ft_strdup(char *);
 
 int64_t ft_list_size(t_list *);
-//void ft_list_push_front(t_list **, void *);
+void ft_list_push_front(t_list **, void *);
 void ft_list_remove_if(t_list **begin_list, void* data_ref, int (*cmp)(), void (*free_fct)(void*));
 
 int compare_int(void* data_ref, void *data_elem)
@@ -56,18 +56,19 @@ int main()
 	char *m1 = ft_strdup(s1); //First
 	char *m2 = ft_strdup(s2); //Second
 	char *m3 = ft_strdup("Third");
-	//printf("The length is %d\n", strlen(s1));
-	//printf("The length is %d\n", ft_strlen(s1));
-	//printf("The comparison is %d\n", strcmp(s1, s2));
-	//printf("The comparison is %d\n", ft_strcmp(s1, s2));
-	//printf("src is %s and dst is %s\n", src, dest);
-	//printf("\nReturn of write is: %d\n", write(4, s1, 5));
-	//printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
-	//printf("\nReturn of ft_write is: %d\n", read(0, s1, 5));
-	//printf("\nError is: %s with errno %d\n", strerror(errno), errno);
-	//char * duplicate = ft_strdup(s2);
-	//printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
-	//printf("src is %s and dst is %s\n", src, dest);
+	printf("The length is %d\n", strlen(s1));
+	printf("The length is %d\n", ft_strlen(s1));
+	printf("The comparison is %d\n", strcmp(s1, s2));
+	printf("The comparison is %d\n", ft_strcmp(s1, s2));
+	printf("src is %s and dst is %s\n", src, dest);
+	printf("\nReturn of write is: %d\n", write(1, s1, 5));
+	printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
+	errno = 0;
+	printf("\nReturn of ft_read is: %d\n", read(4, s1, 5));
+	printf("\nError is: %s with errno %d\n", strerror(errno), errno);
+	char * duplicate = ft_strdup(s2);
+	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
+	printf("src is %s and dst is %s\n", src, dest);
 	//hello_world();
 	printf("Head points to %s\n", head);
 	ft_list_push_front(&head, (void*)m1);
