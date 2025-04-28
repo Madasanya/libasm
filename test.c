@@ -61,10 +61,10 @@ int main()
 	printf("The comparison is %d\n", strcmp(s1, s2));
 	printf("The comparison is %d\n", ft_strcmp(s1, s2));
 	printf("src is %s and dst is %s\n", src, dest);
-	printf("\nReturn of write is: %d\n", write(1, s1, 5));
+	printf("\nReturn of write is: %d\n", ft_write(-5, s1, 5));
 	printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
 	errno = 0;
-	printf("\nReturn of ft_read is: %d\n", read(4, s1, 5));
+	printf("\nReturn of ft_read is: %d\n", read(1, s1, 5));
 	printf("\nError is: %s with errno %d\n", strerror(errno), errno);
 	char * duplicate = ft_strdup(s2);
 	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
@@ -72,8 +72,11 @@ int main()
 	//hello_world();
 	printf("Head points to %s\n", head);
 	ft_list_push_front(&head, (void*)m1);
+	printf("Head points to %s\n", *head);
 	ft_list_push_front(&head, (void*)m2);
+	printf("Head points to %s\n", *head);
 	ft_list_push_front(&head, (void*)m3);
+	printf("Head points to %s\n", *head);
 	printf("Elem1 data %s\n", head->data);
 	printf("Elem2 data %s\n", head->next->data);
 	printf("Elem3 data %s\n", head->next->next->data);

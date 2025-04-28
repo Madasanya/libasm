@@ -5,7 +5,7 @@
           extern __errno_location
           global    ft_read
           section   .text
-ft_read:   mov     rax, 0           ; init of return value with 0, also used as string index
+ft_read:   mov     rax, 0           ; rax is syscall input and 1 the value for read
             syscall
             cmp rax, 0
             jge exit
