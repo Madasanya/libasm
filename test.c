@@ -30,7 +30,7 @@ int compare_int(void* data_ref, void *data_elem)
 int main()
 {
 	char s1[8] = "First";
-	//char s11[4]= "hjiu";
+	// char s11[4]= "hjiu";
 	char s2[8] = "Second";
 	char dest[3];
 	dest[1] = 0;
@@ -52,24 +52,23 @@ int main()
 	//elem2.next = &elem3;
 	//t_list* head = &elem1;
 	t_list* head = NULL;
-
-	char *m1 = strdup(s1); //First
-	char *m2 = strdup(s2); //Second
-	char *m3 = strdup("Third");
+	char *m1 = ft_strdup(s1); //First
+	char *m2 = ft_strdup(s2); //Second
+	char *m3 = ft_strdup("Third");
 	printf("The length is %ld\n", strlen(s1));
 	printf("The length is %ld\n", ft_strlen(s1));
 	printf("The comparison is %d\n", strcmp(s1, s2));
 	printf("The comparison is %ld\n", ft_strcmp(s1, s2));
+	printf("src is %s and dest is %s\n", src, dest);
+	printf("\nReturn of ft_read is: %ld\n", ft_read(-1, s1, 5));
+	printf("\nError is: %s with errno %d\n", strerror(errno), errno);
+	errno = 0;
+	printf("\nReturn of write is: %ld\n", ft_write(1, s1, 5));
+	printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
+	char * duplicate = ft_strdup(s2);
+	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
 	printf("src is %s and dst is %s\n", src, dest);
-	// printf("\nReturn of write is: %ld\n", ft_write(-5, s1, 5));
-	// printf("\nError is: %s with errno: %d\n", strerror(errno), errno);
-	// errno = 0;
-	// printf("\nReturn of ft_read is: %ld\n", ft_read(1, s1, 5));
-	// printf("\nError is: %s with errno %d\n", strerror(errno), errno);
-	// char * duplicate = ft_strdup(s2);
-	// printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
-	// printf("src is %s and dst is %s\n", src, dest);
-	// //hello_world();
+	//hello_world();
 	printf("Head points to %p\n", head);
 	ft_list_push_front(&head, (void*)m3);
 	// //printf("Head points to %s\n", *head);
@@ -82,7 +81,7 @@ int main()
 	printf("Elem3 data %s\n", (char *)head->next->next->data);
 	printf("Last elem->next %p\n", head->next->next->next);
 	printf("List size is %ld\n", ft_list_size(head));
-	printf("Node size is\n\tdata:%d\n\tnext:%d\n\ttotal:%d\n", sizeof(elem1.data), sizeof(elem1.next), sizeof(elem1));
+	printf("Node size is\n\tdata:%ld\n\tnext:%ld\n\ttotal:%ld\n", sizeof(elem1.data), sizeof(elem1.next), sizeof(elem1));
 	ft_list_remove_if(&head, (void*)m2, strcmp, free);
 	printf("List size is %ld\n", ft_list_size(head));
 	printf("Elem1 data %s\n", (char *)head->data);

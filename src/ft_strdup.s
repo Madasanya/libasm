@@ -2,18 +2,23 @@
 ; ft_strdup
 ; ----------------------------------------------------------------------------------------
 
-	  extern __errno_location
-          extern malloc
-          global    ft_strdup
-          section   .text
-ft_strdup:  mov rbx, 0 ; strlen counter for malloc length
+global    ft_strdup
+extern malloc
+
+section   .text
+
+ft_strdup:  push rbp
+            mov  rbp, rsp
+            push rbx
+            push r12
+            mov rbx, 1 ; strlen counter for malloc length (starting with 1 for null terminator")
             mov r12, rdi
-src_end:    cmp byte [rdi], 0
-            je malloc_call
+src_len:    cmp byte [rdi], 0
+            je alloc_call
             inc rdi
             inc rbx
-            jmp src_end
-malloc_call:mov rdi, rbx
+            jmp src_len
+alloc_call: mov rdi, rbx
             call malloc wrt ..plt
 	        cmp rax, 0x0
 	        je exit
@@ -26,4 +31,8 @@ loop:       mov dl, byte [rdi]
             inc rsi
             inc rdi
             jmp loop
-exit:       ret                          ; returns rax
+exit:       pop r12
+            pop rbx
+            mov rsp, rbp
+            pop rbp
+            ret                          ; returns rax
