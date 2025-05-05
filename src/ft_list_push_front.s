@@ -6,6 +6,8 @@
           global    ft_list_push_front
           section   .text
 ft_list_push_front:
+            push rbp    ; Save the stack
+            mov  rbp, rsp
             cmp rdi, 0x0                ; check if pointer to list is NULL
             je exit
             mov r12, rdi                ; copy pointer to list to callee-save register
@@ -18,4 +20,6 @@ ft_list_push_front:
             mov r14, [r12]              ; copy list head pointer to register (memory to reg)
             mov [rax+8], r14            ; copy list head pointer to elements next pointer
             mov [r12], rax              ; copy pointer of list head to new element
-exit:       ret                         ; returns rax
+exit:       mov rsp, rbp
+            pop rbp
+            ret                          ; returns rax

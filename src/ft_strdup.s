@@ -7,7 +7,7 @@ extern malloc
 
 section   .text
 
-ft_strdup:  push rbp
+ft_strdup:  push rbp    ; Save the stack
             mov  rbp, rsp
             push rbx
             push r12
