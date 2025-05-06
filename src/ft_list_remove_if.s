@@ -8,6 +8,11 @@
 ft_list_remove_if:
                     push rbp    ; Save the stack
                     mov  rbp, rsp
+                    push rbx
+                    push r12
+                    push r13
+                    push r14
+                    push r15
                     cmp rdi, 0x0
                     je exit
                     cmp rsi, 0x0
@@ -44,6 +49,11 @@ next_elem:          mov r8, [r15+8]     ; copy element->next to temporary regist
                     add r14, 8          ; move to the element->next section (for same structure as begin_list)
                     mov r15, [r15+8]    ; copy next element to compare to register
                     jmp compare
-exit:               mov rsp, rbp
+exit:               pop r15
+                    pop r14
+                    pop r13
+                    pop r12
+                    pop rbx
+                    mov rsp, rbp
                     pop rbp
                     ret                          ; returns rax
