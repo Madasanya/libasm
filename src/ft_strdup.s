@@ -11,7 +11,7 @@ ft_strdup:  push rbp    ; Save the stack
             mov  rbp, rsp
             push rbx
             push r12
-            mov rbx, 1 ; strlen counter for malloc length (starting with 1 for null terminator")
+            mov rbx, 1 ; strlen counter for malloc length (starting with 1 for null terminator)
             mov r12, rdi
 src_len:    cmp byte [rdi], 0
             je alloc_call

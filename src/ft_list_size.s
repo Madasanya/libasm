@@ -1,5 +1,7 @@
 ; ----------------------------------------------------------------------------------------
-; ft_list_size
+; Create the function ft_list_size, which returns the number of elements in the
+;list.
+;int ft_list_size(t_list *begin_list);
 ; ----------------------------------------------------------------------------------------
 
           global    ft_list_size

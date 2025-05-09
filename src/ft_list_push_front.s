@@ -1,5 +1,15 @@
 ; ----------------------------------------------------------------------------------------
-; ft_list_push_front
+; Create the function ft_list_push_front, which adds a new element of type t_list
+;to the beginning of the list.
+;• It should assign data to the given argument.
+;• If necessary, it will update the pointer at the beginning of the list.
+; void ft_list_push_front(t_list **begin_list, void *data);
+;
+;ft_create_elem
+;• Create the function ft_create_elem, which creates a new element of t_list type.
+;• It should assign data to the given argument and next to NULL.
+;
+;t_list *ft_create_elem(void *data);
 ; ----------------------------------------------------------------------------------------
 
           extern malloc
