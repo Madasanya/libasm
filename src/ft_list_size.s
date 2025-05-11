@@ -7,14 +7,12 @@
           global    ft_list_size
           section   .text
 ft_list_size:
-            mov rax, 0
-            cmp rdi, 0x0
-            je exit
-loop:       
-            inc rax
-            cmp byte [rdi+8], 0
-            je exit
-            mov rdi, [rdi+8]
+            xor rax, rax ; fastes way to initialize rax with 0; will be used as counter
+loop:
+            test rdi, rdi ; like AND, but without storing the result, but setting flags like ZF (Zero Flag)
+            je exit ; if zero flag was set, a a null pointer was detected and we want to terminate
+            inc rax ; number of list size increments
+            mov rdi, [rdi+8] ; rdi is set to the value of next
             jmp loop
 exit:       
             ret                          ; returns rax

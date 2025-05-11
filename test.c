@@ -69,6 +69,7 @@ int main()
 	printf("Original:\t\t\t%s\nDuplicate:\t\t\t%s\n", s2, duplicate);
 	printf("src is %s and dst is %s\n", src, dest);
 	//hello_world();
+	printf("List size is %ld\n", ft_list_size(head));
 	printf("Head points to %p\n", head);
 	ft_list_push_front(&head, (void*)m3);
 	// //printf("Head points to %s\n", *head);
