@@ -7,32 +7,34 @@ extern malloc
 
 section   .text
 
-ft_strdup:  push rbp    ; Save the stack
-            mov  rbp, rsp
-            push rbx
+ft_strdup:  
             push r12
-            mov rbx, 1 ; strlen counter for malloc length (starting with 1 for null terminator)
             mov r12, rdi
-src_len:    cmp byte [rdi], 0
-            je alloc_call
+            mov rcx, 1 ; strlen counter for malloc length (starting with 1 for null terminator)
+            
+.count_loop:    
+            cmp byte [rdi], 0
+            je .alloc_call
             inc rdi
-            inc rbx
-            jmp src_len
-alloc_call: mov rdi, rbx
+            inc rcx
+            jmp .count_loop
+.alloc_call:
+            mov rdi, rcx
             call malloc wrt ..plt
-	        cmp rax, 0x0
-	        je exit
+	        test rax, rax
+	        je .exit
+
             mov rsi, rax
             mov rdi, r12     
-loop:       mov dl, byte [rdi]
+.copy_loop:       
+            mov dl, byte [rdi]
             mov byte [rsi], dl
-            cmp byte [rdi], 0
-            je exit
             inc rsi
             inc rdi
-            jmp loop
-exit:       pop r12
-            pop rbx
-            mov rsp, rbp
-            pop rbp
+            test dl, dl
+            jne .copy_loop
+.exit:      
+            pop r12
             ret                          ; returns rax
+
+section .note.GNU-stack noalloc noexec nowrite progbits

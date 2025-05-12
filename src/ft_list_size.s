@@ -16,3 +16,5 @@ loop:
             jmp loop
 exit:       
             ret                          ; returns rax
+
+section .note.GNU-stack noalloc noexec nowrite progbits
