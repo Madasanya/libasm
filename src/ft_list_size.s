@@ -8,13 +8,13 @@
           section   .text
 ft_list_size:
             xor rax, rax ; fastes way to initialize rax with 0; will be used as counter
-loop:
+.loop:
             test rdi, rdi ; like AND, but without storing the result, but setting flags like ZF (Zero Flag)
-            je exit ; if zero flag was set, a a null pointer was detected and we want to terminate
+            je .exit ; if zero flag was set, a a null pointer was detected and we want to terminate
             inc rax ; number of list size increments
             mov rdi, [rdi+8] ; rdi is set to the value of next
-            jmp loop
-exit:       
+            jmp .loop
+.exit:       
             ret                          ; returns rax
 
 section .note.GNU-stack noalloc noexec nowrite progbits

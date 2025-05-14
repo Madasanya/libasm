@@ -9,7 +9,7 @@ ft_write:
             ; Arguments: rdi = fd, rsi = buf, rdx = count (as per syscall convention)
             mov     rax, 1           ; rax is syscall input and 1 the value for write
             syscall		     ; syscall will be called with rax (here set to 1 for write) as parameter
-            cmp rax, 0		     ; the return value of the syscall is stored in rax. On success the number of bytes written is returned, -1 otherwise
+            test rax, rax		     ; the return value of the syscall is stored in rax. On success the number of bytes written is returned, -1 otherwise
             jge .exit
             ; setting of errno in case of error     
             neg rax		     ; errno is returned as negative value from -1 to -4095 and therefore needs to be negated
