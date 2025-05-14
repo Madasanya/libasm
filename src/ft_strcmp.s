@@ -13,10 +13,8 @@ ft_strcmp:
 loop:       ;mov dl, byte [rdi+rax]
             ;mov cl, byte [rsi+rax]
             ;cmp dl, 0
-            cld
-            mov cx, 50
-            repe cmpsb
-            jne exit
+            repnz cmpsb
+            je exit
             ;cmp dl, cl
             ;jne exit
             ;inc rax
@@ -25,6 +23,9 @@ real:       ret
 exit:       ;sub dl, cl
             dec rdi
             dec rsi
+            mov dl, byte [rdi]
+            mov cl, byte [rsi]
+            sub dl, cl
             movsx rax, dl
             jmp real              ; returns rax
 

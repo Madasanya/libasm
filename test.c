@@ -31,7 +31,7 @@ int main()
 {
 	char s1[8] = "First";
 	// char s11[4]= "hjiu";
-	char s2[8] = "Second";
+	char s2[8] = "Fj";
 	char dest[3];
 	dest[1] = 0;
 	char src[] = "see_you_next_time";
