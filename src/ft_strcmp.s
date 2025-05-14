@@ -7,22 +7,25 @@
 
           global    ft_strcmp
           section   .text
-ft_strcmp:  push rbp    ; Save the stack
-            mov  rbp, rsp
-            mov rax, 0           ; init of return value with 0, also used as string index
-loop:       mov dl, byte [rdi+rax]
-            mov cl, byte [rsi+rax]
-            cmp dl, 0
-            ;cmpsb rdi+rax, rsi+rax
-            je exit
-            cmp dl, cl
+ft_strcmp:  
+            xor rax, rax           ; init of return value with 0, also used as string index
+            ;mov [rdx], rdi
+loop:       ;mov dl, byte [rdi+rax]
+            ;mov cl, byte [rsi+rax]
+            ;cmp dl, 0
+            cld
+            mov cx, 50
+            repe cmpsb
             jne exit
-            inc rax
-            jmp loop
-exit:       sub dl, cl
+            ;cmp dl, cl
+            ;jne exit
+            ;inc rax
+            ;jmp loop
+real:       ret
+exit:       ;sub dl, cl
+            dec rdi
+            dec rsi
             movsx rax, dl
-            mov rsp, rbp
-            pop rbp
-            ret                          ; returns rax
+            jmp real              ; returns rax
 
 section .note.GNU-stack noalloc noexec nowrite progbits

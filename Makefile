@@ -29,6 +29,6 @@ fclean:		clean
 re:			fclean all
 
 test:		all
-			gcc test.c -L. ${NAME} -o test && ./test
+			gcc -g3 test.c -L. ${NAME} -o test && ./test
 
 .PHONY:		all clean fclean re
