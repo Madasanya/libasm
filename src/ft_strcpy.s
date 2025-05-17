@@ -24,7 +24,7 @@ src_end:
             je .exit
             dec rsi
             dec rdi
-            jmp loop
+            jmp .loop
 .exit:       
             ret                          ; returns rax
 
