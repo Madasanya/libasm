@@ -12,19 +12,20 @@ src_end:
             mov dl, byte [rsi]
             push rdx ; stack usage, so that memory overlapping is not affecting the function
             cmp byte [rsi], 0
-            je loop
+            je .loop
             inc rsi
             inc rdi
             jmp src_end
 
-loop:       pop rdx
+.loop:      
+            pop rdx
             mov byte [rdi], dl
             cmp rax, rdi
-            je exit
+            je .exit
             dec rsi
             dec rdi
             jmp loop
-exit:       
+.exit:       
             ret                          ; returns rax
 
 section .note.GNU-stack noalloc noexec nowrite progbits
