@@ -8,14 +8,14 @@
           section   .text
 ft_strcpy:  
             mov rax, rdi
-src_end:    
+.src_end:    
             mov dl, byte [rsi]
             push rdx ; stack usage, so that memory overlapping is not affecting the function
             cmp byte [rsi], 0
             je .loop
             inc rsi
             inc rdi
-            jmp src_end
+            jmp .src_end
 
 .loop:      
             pop rdx

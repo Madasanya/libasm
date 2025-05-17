@@ -16,28 +16,26 @@
           global    ft_list_push_front
           section   .text
 ft_list_push_front:
-            push rbp    ; Save the stack
-            mov  rbp, rsp
-            push r12
-            push r13
-            push r14
-            cmp rdi, 0x0                ; check if pointer to list is NULL
-            je exit
-            mov r12, rdi                ; copy pointer to list to callee-save register
-            mov r13, rsi                ; copy pointer to data to callee-saved register
+            test rdi, rdi                ; check if pointer to list is NULL; is *head NULL?
+            je .error
+            push rdi                    ; copy pointer to list to stack
+            push rsi                    ; copy pointer to data to stack
             mov rdi, 16                 ; pass element size to malloc calls 1st argument
             call malloc wrt ..plt       ; call malloc to allocate memory for new element
-            cmp rax, 0x0                  ; check if malloc was successful
-            je exit
-            mov [rax+0], r13            ; copy data to element data pointer
-            mov r14, [r12]              ; copy list head pointer to register (memory to reg)
-            mov [rax+8], r14            ; copy list head pointer to elements next pointer
-            mov [r12], rax              ; copy pointer of list head to new element
-exit:       pop r14
-            pop r13
-            pop r12
-            mov rsp, rbp
-            pop rbp
+            test rax, rax                  ; check if malloc was successful
+            je .error_clean
+            pop r11                     ; take pointer to data from stack to caller-save register
+            mov [rax+0], r11            ; copy data to element data pointer; new_node->data = data
+            pop r9                      ; take pointer to list from stack to caller-save register
+            mov r8, [r9]                ; copy list head pointer to caller-save register (memory to reg)
+            mov [rax+8], r8                ; copy list head pointer to elements next pointer; new_node->next = *head
+            mov [r9], rax               ; copy pointer of list head to new element; *head = new_node
+            jmp .exit
+.error_clean:
+            add rsp, 16 
+.error:
+            xor rax, rax
+.exit:       
             ret                          ; returns rax
 
 section .note.GNU-stack noalloc noexec nowrite progbits
