@@ -16,6 +16,8 @@
           global    ft_list_push_front
           section   .text
 ft_list_push_front:
+            push rbp    ; Save the stack
+            mov  rbp, rsp
             test rdi, rdi                ; check if pointer to list is NULL; is *head NULL?
             je .error
             push rdi                    ; copy pointer to list to stack
@@ -23,19 +25,19 @@ ft_list_push_front:
             mov rdi, 16                 ; pass element size to malloc calls 1st argument
             call malloc wrt ..plt       ; call malloc to allocate memory for new element
             test rax, rax                  ; check if malloc was successful
-            je .error_clean
+            je .error
             pop r11                     ; take pointer to data from stack to caller-save register
             mov [rax+0], r11            ; copy data to element data pointer; new_node->data = data
             pop r9                      ; take pointer to list from stack to caller-save register
             mov r8, [r9]                ; copy list head pointer to caller-save register (memory to reg)
-            mov [rax+8], r8                ; copy list head pointer to elements next pointer; new_node->next = *head
+            mov [rax+8], r8             ; copy list head pointer to elements next pointer; new_node->next = *head
             mov [r9], rax               ; copy pointer of list head to new element; *head = new_node
             jmp .exit
-.error_clean:
-            add rsp, 16 
 .error:
             xor rax, rax
-.exit:       
+.exit:      
+            mov rsp, rbp
+            pop rbp
             ret                          ; returns rax
 
 section .note.GNU-stack noalloc noexec nowrite progbits
