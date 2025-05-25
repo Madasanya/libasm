@@ -124,24 +124,6 @@ char *ft_strdup(const char *s);
 void ft_list_push_front(t_list **begin_list, void *data);
 
 /**
- * @brief Adds a new element at the beginning of a singly linked list.
- *
- * This NASM-implemented function behaves like a typical push-front
- * operation for singly linked lists. It creates a new list node,
- * assigns the provided `data` to it, and inserts it at the beginning
- * of the list pointed to by `begin_list`.
- *
- * The function uses `malloc()` to allocate memory for the new node and
- * does nothing if allocation fails.
- *
- * @param begin_list A pointer to the pointer to the first element of the list.
- * @param data Pointer to the data to store in the new list node.
- * @return None.
- */
-void ft_list_push_front(t_list **begin_list, void *data);
-
-
-/**
  * @brief Counts the number of elements in a singly linked list.
  *
  * This NASM-implemented function traverses the list starting from
