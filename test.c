@@ -1,26 +1,6 @@
-#include <string.h>
-#include <stdio.h>
-#include <inttypes.h>
-#include <unistd.h>
-#include <errno.h>
-#include <stdlib.h>
+#include "libasm.h"
 
-typedef struct 	s_list
-{
-	void* 			data;
-	struct s_list* 	next;
-}				t_list;
-
-int64_t ft_strlen(char *);
-int64_t ft_strcmp(char *, char *);
-char * ft_strcpy(char *, char *);
-int64_t ft_write(int64_t, char *, int64_t);
-int64_t ft_read(int64_t, char *, int64_t);
-char * ft_strdup(char *);
-
-int64_t ft_list_size(t_list *);
-void ft_list_push_front(t_list **, void *);
-void ft_list_remove_if(t_list **begin_list, void* data_ref, int (*cmp)(), void (*free_fct)(void*));
+int64_t ft_list_remove_if(t_list **begin_list, void* data_ref, int (*cmp)(), void (*free_fct)(void*));
 
 int compare_int(void* data_ref, void *data_elem)
 {
@@ -83,7 +63,7 @@ int main()
 	printf("Last elem->next %p\n", head->next->next->next);
 	printf("List size is %ld\n", ft_list_size(head));
 	printf("Node size is\n\tdata:%ld\n\tnext:%ld\n\ttotal:%ld\n", sizeof(elem1.data), sizeof(elem1.next), sizeof(elem1));
-	ft_list_remove_if(&head, (void*)m2, strcmp, free);
+	printf("Remove returns: %ld\n", ft_list_remove_if(&head, (void*)"Third", strcmp, free));
 	printf("List size is %ld\n", ft_list_size(head));
 	printf("Elem1 data %s\n", (char *)head->data);
 	printf("Elem2 data %s\n", (char *)head->next->data);

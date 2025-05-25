@@ -2,6 +2,24 @@
 ; ft_strcpy
 ; no calle-saved registers used so they don't need to be safed neither
 ; no call, so caller safed registers doesnt need to be saved 
+;
+; SYNOPSIS         top
+;        #include <string.h>
+
+;        char *strcpy(char *restrict dst, const char *restrict src);
+
+; DESCRIPTION
+;        strcpy()
+;               These functions copy the string pointed to by src, into a
+;               string at the buffer pointed to by dst.  The programmer is
+;               responsible for allocating a destination buffer large
+;               enough, that is, strlen(src) + 1.  For the difference
+;               between the two functions, see RETURN VALUE.
+
+; RETURN VALUE
+
+;        strcpy()
+;               These functions return dst.
 ; ----------------------------------------------------------------------------------------
 
           global    ft_strcpy
