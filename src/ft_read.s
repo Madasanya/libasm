@@ -20,8 +20,8 @@
 ; @return The number of bytes read on success, 0 on EOF, or -1 on error with `errno` set.
 ; ----------------------------------------------------------------------------------------
 
-extern          __errno_location
 global          ft_read
+extern          __errno_location
 
 section .text
 ft_read:   
