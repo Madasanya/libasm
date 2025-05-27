@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 typedef struct 	s_list
 {
@@ -133,5 +134,29 @@ void ft_list_push_front(t_list **begin_list, void *data);
  * @return The number of elements in the list.
  */
 int ft_list_size(t_list *begin_list);
+
+/**
+ * @brief
+ * Removes from the list all elements whose data matches data_ref,
+ * based on a comparison function cmp. The data of each removed
+ * element is freed using the free_fct function.
+ *
+ * The comparison function cmp should return 0 when the two elements
+ * are considered equal (i.e., when an element should be removed).
+ *
+ * Elements are removed in-place and memory is freed using free_fct
+ * and free() for the node itself.
+ *
+ * @param t_list **begin_list   → A pointer to the pointer to the beginning of the list.
+ *
+ * @param void *data_ref        → The data reference to compare each element's data to.
+ *
+ * @param int (*cmp)()          → A function that compares list data to data_ref.
+ *                           Should return 0 when the data matches (i.e., should be removed).
+ * @param void (*free_fct)()    → A function used to free the data of removed elements.
+ *
+ * @return None. The list is modified in-place.
+ */
+int ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 #endif //LIBASM_H

@@ -24,11 +24,19 @@ clean:
 			${RM} ${OBJD}*.o
 
 fclean:		clean
-			${RM} ${NAME} test
+			${RM} ${NAME} test *.txt
 
 re:			fclean all
 
 test:		all
-			gcc test.c -L. ${NAME} -o test && ./test
+			gcc main.c -L. ${NAME} -o test
+			@echo "Running libc version..."
+			@USE_LIBC=1 ./test
+			@echo "Running libasm version..."
+			@./test USE_LIBC=0
+			@echo "Comparing results..."
+			@diff out_libc.txt out_asm.txt > output.txt && \
+				(echo "\033[1;32m✅ No differences found! Tests passed.\033[0m") || \
+				(echo "\033[1;31m❌ Differences found. Check output.txt for details.\033[0m")
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re test
