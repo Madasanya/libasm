@@ -92,8 +92,8 @@ int main(void) {
 
     // *** STRCMP ***
     printf("\n *** STRCMP *** \n");
-    printf("[strcmp same]  %d\n", USE(strcmp, "abc", "abc"));
-    printf("[strcmp different]  %d\n", USE(strcmp, "abc", "abde"));
+    printf("[strcmp same]  %ld\n", USE(strcmp, "abc", "abc"));
+    printf("[strcmp different]  %ld\n", USE(strcmp, "abc", "abde"));
 
     // *** STRCPY ***
     printf("\n *** STRCPY *** \n");
@@ -118,13 +118,13 @@ int main(void) {
     // *** WRITE ***
     printf("\n *** WRITE *** \n");
     fflush(stdout);
-    printf("[write full] return value = %d, errno = %d\n",USE(write, STDOUT_FILENO, "Writing test successfull\n", strlen("Writing test successfull\n")), errno);
+    printf("[write full] return value = %ld, errno = %d\n",USE(write, STDOUT_FILENO, "Writing test successfull\n", strlen("Writing test successfull\n")), errno);
     fflush(stdout);
     USE(write, -2, "\nWriting test successfull\n", 5);
     printf("\n[write invalid fd] with error text = %s, errno = %d\n", strerror(errno), errno);
     errno = 0; // Reset errno for next test
     fflush(stdout);
-    printf("\n[write size < buffer] return value= %d, errno: %d\n",USE(write, STDOUT_FILENO, "\nWriting test successfull\n", 5), errno);
+    printf("\n[write size < buffer] return value= %ld, errno: %d\n",USE(write, STDOUT_FILENO, "\nWriting test successfull\n", 5), errno);
 
     // *** READ ***
     printf("\n *** READ *** \n");
@@ -189,6 +189,13 @@ int main(void) {
     while (list) {
         tmp = list;
         list = list->next;
+        free(tmp->data);
+        free(tmp);
+    }
+
+    while (list2) {
+        tmp = list2;
+        list2 = list2->next;
         free(tmp->data);
         free(tmp);
     }
