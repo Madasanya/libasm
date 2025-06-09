@@ -23,7 +23,7 @@ ft_strcpy:
 .src_end:    
                 mov dl, byte [rsi]     ; Load the current byte from source (rsi) into dl
                 push rdx               ; Push the 64-bit rdx (upper bits unused) to preserve the byte (dl) on the stack
-                cmp byte [rsi], 0      ; Check if the current byte is null terminator
+                test dl, dl            ; Check if the current byte is null terminator
                 je .loop               ; If it is, jump to the copy loop
                 inc rsi                ; Move to next byte in source
                 inc rdi                ; Move to next byte in destination
@@ -34,7 +34,7 @@ ft_strcpy:
                 mov byte [rdi], dl     ; Write the byte to the destination
                 cmp rax, rdi           ; Check if we've returned to the original destination pointer
                 je .exit               ; If yes, all bytes copied, exit
-                dec rsi                ; Move back in source to next byte to write
+                ;dec rsi                ; Move back in source to next byte to write
                 dec rdi                ; Move back in destination
                 jmp .loop              ; Repeat copying bytes in reverse order
 

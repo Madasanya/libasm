@@ -98,10 +98,14 @@ int main(void) {
     // *** STRCPY ***
     printf("\n *** STRCPY *** \n");
     char dst1[50];
+    char src[15]= "Hello World!\n";
     printf("[strcpy]  %s\n", USE(strcpy, dst1, "copied!"));
+    printf("[strcpy]  %s\n", USE(strcpy, dst1, src));
+    printf("[strcpy no source corruption]  %s\n", src);
     char dst2[50] = "overlapping!";
     printf("[strcpy overlapping]  %s\n", USE(strcpy, dst2+2, dst2));
     printf("[strcpy with empty string]  %s\n", USE(strcpy, dst1, str_empty));
+
 
     // *** STRDUP ***
     printf("\n *** STRDUP *** \n");
