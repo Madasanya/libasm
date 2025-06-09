@@ -25,7 +25,7 @@ section   .text
 ft_list_push_front:
                     push rbp                    ; Save the stack
                     mov  rbp, rsp
-                    test rdi, rdi               ; check if pointer to list is NULL; is *head NULL?
+                    test rdi, rdi               ; check if pointer to list is NULL; (*head == NULL)?
                     je .error
                     push rdi                    ; copy pointer to list to stack
                     push rsi                    ; copy pointer to data to stack

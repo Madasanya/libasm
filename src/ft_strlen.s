@@ -15,11 +15,11 @@ global          ft_strlen
 
 section .text
 ft_strlen:  
-                xor rax, rax           ; fastes way to initialize rax with 0; also used as string index
+                xor rax, rax            ; fastes way to initialize rax with 0; also used as string index
 .count_loop: 
-                cmp byte [rdi+rax], 0
+                cmp byte [rdi+rax], 0   ; compare parameter s (which is stored in rdi as per convention) at the position rax (index) with 0
                 je .exit
-                inc rax
+                inc rax                 ; increase index by 1; index++
                 jmp .count_loop
 .exit:       
                 ret                     ; returns rax
